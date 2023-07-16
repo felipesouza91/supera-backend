@@ -8,11 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 @Entity
 @Table(name = "tranferencia")
+@Data
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Transferencia {
 
   @Id
+  @EqualsAndHashCode.Include
   private Integer id;
 
   @Column(name = "data_transferencia")
