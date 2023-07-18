@@ -1,6 +1,6 @@
 package br.com.banco.domain.model;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,7 +23,7 @@ public class Transferencia {
   private Integer id;
 
   @Column(name = "data_transferencia")
-  private LocalDateTime dataTransferencia;
+  private OffsetDateTime dataTransferencia;
 
   private Float valor;
 
