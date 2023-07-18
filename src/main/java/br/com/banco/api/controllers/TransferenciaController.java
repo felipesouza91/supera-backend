@@ -1,7 +1,5 @@
 package br.com.banco.api.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,7 +21,7 @@ public class TransferenciaController {
 
   @GetMapping("/{contaId}")
   public Page<Transferencia> find(@PathVariable Integer contaId, TranferenciaFilter filtro, Pageable page) {
-    System.out.println(contaId);
+    System.out.println(filtro.getNomeOperador());
     return transferenciaRepository.execute(contaId, filtro, page);
   }
 
