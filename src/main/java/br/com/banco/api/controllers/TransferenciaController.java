@@ -21,8 +21,7 @@ public class TransferenciaController {
 
   @GetMapping("/{contaId}")
   public Page<Transferencia> find(@PathVariable Integer contaId, TranferenciaFilter filtro, Pageable page) {
-    System.out.println(filtro.getNomeOperador());
-    System.out.println(filtro.getEndDate());
+
     return transferenciaRepository.execute(contaId, filtro, page);
   }
 

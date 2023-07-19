@@ -27,6 +27,7 @@ public class TransferenciaRepositoryImpl implements TransferenciaRepositoryQueri
 
   @Override
   public Page<Transferencia> find(Integer contaId, TranferenciaFilter filtro, Pageable page) {
+
     CriteriaBuilder builder = manager.getCriteriaBuilder();
     CriteriaQuery<Transferencia> criteria = builder.createQuery(Transferencia.class);
     Root<Transferencia> root = criteria.from(Transferencia.class);
@@ -44,20 +45,21 @@ public class TransferenciaRepositoryImpl implements TransferenciaRepositoryQueri
     query.setMaxResults(totalPagina);
     Page<Transferencia> results = new PageImpl<>(query.getResultList(), page, total(contaId, filtro));
     return results;
+
   }
 
   private Predicate[] createFilter(Integer contaId, TranferenciaFilter filtro, CriteriaBuilder builder,
       Root<Transferencia> root) {
     List<Predicate> predicates = new ArrayList<>();
     predicates.add(builder.equal(root.get("conta").get("id"), contaId));
-    if (filtro.getStartDate() != null) {
+    if (filtro.getDataInicio() != null) {
       predicates.add(builder.greaterThanOrEqualTo(root.get("dataTransferencia"),
-          filtro.getStartDate().atStartOfDay().atOffset(ZoneOffset.UTC)));
+          filtro.getDataInicio().atStartOfDay().atOffset(ZoneOffset.UTC)));
     }
 
-    if (filtro.getEndDate() != null) {
+    if (filtro.getDataFim() != null) {
       predicates.add(builder.lessThanOrEqualTo(root.get("dataTransferencia"),
-          filtro.getEndDate().atStartOfDay().withHour(23).withMinute(59).withSecond(59).atOffset(ZoneOffset.UTC)));
+          filtro.getDataFim().atStartOfDay().withHour(23).withMinute(59).withSecond(59).atOffset(ZoneOffset.UTC)));
     }
 
     if (filtro.getNomeOperador() != null && !filtro.getNomeOperador().isEmpty()) {

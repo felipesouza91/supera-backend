@@ -9,9 +9,9 @@ import lombok.Setter;
 @Setter
 public class TranferenciaFilter {
 
-  private LocalDate startDate;
+  private LocalDate dataInicio;
 
-  private LocalDate endDate;
+  private LocalDate dataFim;
 
   private String nomeOperador;
 }
