@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.banco.api.filter.TranferenciaFilter;
+import br.com.banco.domain.exception.ContaNaoEncontrada;
 import br.com.banco.domain.model.Transferencia;
 import br.com.banco.domain.repository.ContaRepository;
 import br.com.banco.domain.repository.TransferenciaRepository;
@@ -20,7 +21,7 @@ public class FindTransferenciaService {
   private TransferenciaRepository transferenciaRepository;
 
   public Page<Transferencia> execute(Integer contaId, TranferenciaFilter filtro, Pageable page) {
-    contaRepository.findById(contaId).orElseThrow(() -> new RuntimeException("Error"));
+    contaRepository.findById(contaId).orElseThrow(() -> new ContaNaoEncontrada("A conta não foi encontrada"));
     Page<Transferencia> transferencias = transferenciaRepository.find(contaId, filtro, page);
     return transferencias;
   }
