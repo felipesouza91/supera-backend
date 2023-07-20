@@ -10,4 +10,5 @@ public interface TransferenciaRepositoryQueries {
 
   Page<Transferencia> find(Integer contaId, TranferenciaFilter filtro, Pageable page);
 
+  float fetchTotalAmountByCountId(Integer countId);
 }

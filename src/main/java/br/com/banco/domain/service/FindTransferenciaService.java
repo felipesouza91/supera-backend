@@ -26,4 +26,8 @@ public class FindTransferenciaService {
     return transferencias;
   }
 
+  public float loadTotalAmountByCountID(Integer contaId) {
+    return transferenciaRepository.fetchTotalAmountByCountId(contaId);
+  }
+
 }

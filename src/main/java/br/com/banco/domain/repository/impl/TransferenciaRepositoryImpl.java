@@ -79,4 +79,14 @@ public class TransferenciaRepositoryImpl implements TransferenciaRepositoryQueri
     criteria.select(builder.count(root));
     return manager.createQuery(criteria).getSingleResult();
   }
+
+  @Override
+  public float fetchTotalAmountByCountId(Integer countId) {
+    CriteriaBuilder builder = manager.getCriteriaBuilder();
+    CriteriaQuery<Float> criteria = builder.createQuery(Float.class);
+    Root<Transferencia> root = criteria.from(Transferencia.class);
+    criteria.where(builder.equal(root.get("conta").get("id"), countId));
+    criteria.select(builder.sum(root.get("valor")));
+    return manager.createQuery(criteria).getSingleResult();
+  }
 }

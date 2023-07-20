@@ -8,4 +8,7 @@ import br.com.banco.domain.model.Transferencia;
 @Repository
 public interface TransferenciaRepository extends JpaRepository<Transferencia, Integer>, TransferenciaRepositoryQueries {
 
+
+ 
+
 }
